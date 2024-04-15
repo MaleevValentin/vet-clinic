@@ -10,6 +10,7 @@ public class Main {
     static Scanner SCANNER = new Scanner(System.in);
 
     static String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    static String NAME_PATTERN = "^([A-Z][a-z]{2,}|[A-Z][a-z]{2,}+-[A-Z][a-z]{2,})$";
 
     public static void main(String[] args) {
         run();
@@ -57,11 +58,8 @@ public class Main {
         Client client = new Client();
         client.email = email;
 
-        System.out.print("First name: ");
-        client.firstName = SCANNER.nextLine();
-
-        System.out.print("Last name: ");
-        client.lastName = SCANNER.nextLine();
+        client.firstName = getUserInput("First name");
+        client.lastName = getUserInput("Last name");
 
         return client;
     }
@@ -70,5 +68,23 @@ public class Main {
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    static boolean isNameValid(String name) {
+        Pattern pattern = Pattern.compile(NAME_PATTERN);
+        Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
+    }
+
+    static String getUserInput(String prompt) {
+        while (true) {
+            System.out.print(prompt + ": ");
+            String input = SCANNER.nextLine();
+            if (isNameValid(input)) {
+                return input;
+            } else {
+                System.out.println("Provided " + prompt.toLowerCase() + " is invalid.");
+            }
+        }
     }
 }
