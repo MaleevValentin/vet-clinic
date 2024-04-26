@@ -8,25 +8,28 @@ import main.java.com.magicvet.service.PetService;
 
 public class ApplicationRunner {
 
-    private ClientService clientService = new ClientService();
-    private PetService petService = new PetService();
+    private final ClientService clientService = new ClientService();
+    private final PetService petService = new PetService();
 
     public void run() {
         if (Authenticator.auth()) {
             Client client = clientService.registerNewClient();
 
             if (client != null) {
-                System.out.print("Do you want to register your pet? (y / n): ");
-                String clientAnswer = Main.SCANNER.next();
+                System.out.print("Do you want to register your pet? (yes / no): ");
+                String clientAnswer = Main.SCANNER.nextLine();
 
-                if (clientAnswer.equals("y")) {
-                    System.out.println("Adding a new pet.");
-
-                    Pet pet = petService.registerNewPet();
-                    client.setPet(pet);
-                    pet.setOwnerName(client.getFirstName() + " " + client.getLastName());
-                    System.out.println("Pet has been added.");
+                switch (clientAnswer) {
+                    case "yes" -> {
+                        System.out.println("Adding a new pet.");
+                        Pet pet = petService.registerNewPet();
+                        client.setPet(pet);
+                        pet.setOwnerName(client.getFirstName() + " " + client.getLastName());
+                        System.out.println("Pet has been added.");
+                    }
+                    case "no" -> System.out.println("Pet has not been added.");
                 }
+                System.out.println(client);
             }
         }
     }
