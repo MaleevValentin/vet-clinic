@@ -10,6 +10,16 @@ public abstract class Pet {
     private String name;
     private String ownerName;
 
+    public Pet() {
+    }
+
+    public Pet(String type, String sex, String age, String name) {
+        this.type = type;
+        this.sex = sex;
+        this.age = age;
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "type = " + type
