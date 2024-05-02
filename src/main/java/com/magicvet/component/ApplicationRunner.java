@@ -23,9 +23,11 @@ public class ApplicationRunner {
                     case "yes" -> {
                         System.out.println("Adding a new pet.");
                         Pet pet = petService.registerNewPet();
-                        client.setPet(pet);
-                        pet.setOwnerName(client.getFirstName() + " " + client.getLastName());
-                        System.out.println("Pet has been added.");
+                        if (pet != null) {
+                            client.setPet(pet);
+                            pet.setOwnerName(client.getFirstName() + " " + client.getLastName());
+                            System.out.println("Pet has been added.");
+                        }
                     }
                     case "no" -> System.out.println("Pet has not been added.");
                 }
