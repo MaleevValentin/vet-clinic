@@ -4,7 +4,11 @@ public class Cat extends Pet{
 
     public Cat() { }
 
-    public Cat(String type, String sex, String age, String name) {
-        super(type, sex, age, name);
+    public Cat(HealthState healthState) {
+        super(healthState);
+    }
+
+    public Cat(String type, String sex, String age, String name, HealthState healthState) {
+        super(type, sex, age, name, healthState);
     }
 }

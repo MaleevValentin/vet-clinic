@@ -12,8 +12,12 @@ public class Dog extends Pet {
         this.size = size;
     }
 
-    public Dog(String type, String sex, String age, String name) {
-        super(type, sex, age, name);
+    public Dog(HealthState healthState) {
+        super(healthState);
+    }
+
+    public Dog(String type, String sex, String age, String name, HealthState healthState) {
+        super(type, sex, age, name, healthState);
     }
 
     @Override
@@ -23,7 +27,8 @@ public class Dog extends Pet {
                 + ", age = " + super.getAge()
                 + ", name = " + super.getName()
                 + ", ownerName = " + super.getOwnerName()
-                + ", size = " + size;
+                + ", size = " + size
+                + ", health state = " + super.getHealthState().getOriginalState();
     }
 
     @Override

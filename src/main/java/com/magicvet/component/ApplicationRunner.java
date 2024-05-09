@@ -32,6 +32,8 @@ public class ApplicationRunner {
                     case "no" -> System.out.println("Pet has not been added.");
                 }
                 System.out.println(client);
+            } else {
+                System.out.println("Registration canceled.");
             }
         }
     }

@@ -9,15 +9,21 @@ public abstract class Pet {
     private String age;
     private String name;
     private String ownerName;
+    private HealthState healthState;
 
     public Pet() {
     }
 
-    public Pet(String type, String sex, String age, String name) {
+    public Pet(HealthState healthState) {
+        this.healthState = healthState;
+    }
+
+    public Pet(String type, String sex, String age, String name, HealthState healthState) {
         this.type = type;
         this.sex = sex;
         this.age = age;
         this.name = name;
+        this.healthState = healthState;
     }
 
     @Override
@@ -26,6 +32,7 @@ public abstract class Pet {
                 + ", sex = " + sex
                 + ", age = " + age
                 + ", name = " + name
+                + ", health state = " + healthState.getOriginalState()
                 + ", ownerName = " + ownerName;
     }
 
@@ -38,12 +45,13 @@ public abstract class Pet {
                 && Objects.equals(sex, pet.sex)
                 && Objects.equals(age, pet.age)
                 && Objects.equals(name, pet.name)
-                && Objects.equals(ownerName, pet.ownerName);
+                && Objects.equals(ownerName, pet.ownerName)
+                && Objects.equals(healthState, pet.healthState);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, sex, age, name, ownerName);
+        return Objects.hash(type, sex, age, name, ownerName, healthState);
     }
 
     public String getType() {
@@ -84,5 +92,45 @@ public abstract class Pet {
 
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
+    }
+
+    public HealthState getHealthState() {
+        return healthState;
+    }
+
+    public void setHealthState(HealthState healthState) {
+        this.healthState = healthState;
+    }
+
+    public enum HealthState {
+        AGGRESSIVE("AGGRESSIVE","Агресивний", 0),
+        PAIN("PAIN","Біль", 1),
+        LETHARGIC("LETHARGIC","Млявий", 2),
+        EXCITED("EXCITED","Збуджений", 3),
+        FEAR("FEAR","Страх", 4),
+        NORMAL("NORMAL","Нормальний", 5),
+        LIVELY("LIVELY","Жвавий", 6);
+
+        private final String originalState;
+        private final String ukrTranslation;
+        private final int value;
+
+        HealthState(String originalState, String ukrTranslation, int value) {
+            this.originalState = originalState;
+            this.ukrTranslation = ukrTranslation;
+            this.value = value;
+        }
+
+        public String getOriginalState() {
+            return originalState;
+        }
+
+        public String getUkrTranslation() {
+            return ukrTranslation;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 }
