@@ -28,34 +28,58 @@ public class Sandbox {
                 return o1.getSize().getValue() - o2.getSize().getValue();
             }
         });
+
+        System.out.println("\nSort by dog size:");
         for (Dog dog : dogs) {
             System.out.println(dog.getSize());
         }
 
-        System.out.println("\n----------\n");
-
         Pet[] pets = {
-                new Cat("cat", "female", "13", "Buffy"),
-                new Dog("dog", "male", "3", "Bob"),
-                new Cat("cat", "female", "11", "Ann"),
-                new Dog("dog", "male", "1", "John"),
-                new Cat("cat", "male", "2", "Rich"),
-                new Dog("dog", "female", "6", "Leslie"),
-                new Cat("cat", "male", "8", "Den"),
-                new Dog("dog", "male", "5", "Tor"),
+                new Cat("cat", "female", "13", "Buffy", Pet.HealthState.NORMAL),
+                new Dog("dog", "male", "3", "Bob", Pet.HealthState.PAIN),
+                new Cat("cat", "female", "11", "Ann", Pet.HealthState.LETHARGIC),
+                new Dog("dog", "male", "1", "John", Pet.HealthState.EXCITED),
+                new Cat("cat", "male", "2", "Rich", Pet.HealthState.LIVELY),
+                new Dog("dog", "female", "6", "Leslie", Pet.HealthState.AGGRESSIVE),
+                new Cat("cat", "male", "8", "Den", Pet.HealthState.FEAR),
+                new Dog("dog", "male", "5", "Tor", Pet.HealthState.PAIN),
         };
 
+        System.out.println("\nSort by pet age:");
         Arrays.sort(pets, new PetAgeComparator());
         for (Pet pet : pets) {
             System.out.println(pet.getAge());
         }
 
-        System.out.println("\n----------\n");
-
+        System.out.println("\nSort by pet name:");
         Arrays.sort(pets, new PetNameComparator());
         for (Pet pet : pets) {
             System.out.println(pet.getName());
         }
-    }
 
+        Pet[] newPets = {
+                new Cat(Pet.HealthState.PAIN),
+                new Dog(Pet.HealthState.LETHARGIC),
+                new Cat(Pet.HealthState.AGGRESSIVE),
+                new Dog(Pet.HealthState.FEAR),
+                new Dog(Pet.HealthState.EXCITED),
+                new Cat(Pet.HealthState.NORMAL),
+                new Dog(Pet.HealthState.LETHARGIC),
+                new Dog(Pet.HealthState.LIVELY),
+                new Dog(Pet.HealthState.AGGRESSIVE),
+                new Dog(Pet.HealthState.PAIN),
+        };
+
+        Arrays.sort(newPets, new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                return o1.getHealthState().getValue() - o2.getHealthState().getValue();
+            }
+        });
+
+        System.out.println("\nSort by priority of helping pets:");
+        for (Pet pet : newPets) {
+            System.out.println(pet.getHealthState().getOriginalState());
+        }
+    }
 }

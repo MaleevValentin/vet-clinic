@@ -44,6 +44,19 @@ public class PetService {
             ((Dog) pet).setSize(Dog.Size.valueOf(size));
         }
 
+        System.out.println("""
+                Select your pet's health status:
+                AGGRESSIVE
+                PAIN
+                LETHARGIC
+                EXCITED
+                FEAR
+                NORMAL
+                LIVELY
+                """);
+        String state = Main.SCANNER.nextLine().toUpperCase();
+        pet.setHealthState(Pet.HealthState.valueOf(state));
+
         return pet;
     }
 }
