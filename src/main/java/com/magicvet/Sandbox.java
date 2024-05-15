@@ -81,5 +81,8 @@ public class Sandbox {
         for (Pet pet : newPets) {
             System.out.println(pet.getHealthState().getOriginalState());
         }
+
+        System.out.println("\nTesting registration date:");
+        System.out.println(new Cat());
     }
 }
