@@ -33,13 +33,15 @@ public abstract class Pet {
 
     @Override
     public String toString() {
-        return "type = " + type
+        return "Pet {"
+                + "type = " + type
                 + ", sex = " + sex
                 + ", age = " + age
                 + ", name = " + name
                 + ", health state = " + healthState
                 + ", ownerName = " + ownerName
-                + ", registrationDate = " + registrationDate.format(FORMATTER);
+                + ", registrationDate = " + registrationDate.format(FORMATTER)
+                + "}";
     }
 
     @Override
