@@ -37,6 +37,10 @@ public class ClientService {
         client.setFirstName(getUserInput("First name"));
         client.setLastName(getUserInput("Last name"));
 
+        System.out.print("Location (Kyiv / Kharkiv / Lviv / Odesa): ");
+        String location = Main.SCANNER.nextLine();
+        client.setLocation(Client.Location.valueOf(location.toUpperCase()));
+
         return client;
     }
 
