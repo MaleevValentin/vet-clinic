@@ -1,11 +1,9 @@
 package main.java.com.magicvet.model;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Dog extends Pet {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
     private Size size;
 
     public Dog() { }
@@ -18,21 +16,21 @@ public class Dog extends Pet {
         super(healthState);
     }
 
-    public Dog(String type, String sex, String age, String name, HealthState healthState) {
+    public Dog(String type, String sex, int age, String name, HealthState healthState) {
         super(type, sex, age, name, healthState);
     }
 
     @Override
     public String toString() {
         return "Pet {"
-                + "type = " + super.getType()
-                + ", sex = " + super.getSex()
-                + ", age = " + super.getAge()
-                + ", name = " + super.getName()
-                + ", health state = " + super.getHealthState().getOriginalState()
-                + ", ownerName = " + super.getOwnerName()
-                + ", size = " + size
-                + ", registrationDate = " + super.getRegistrationDate().format(FORMATTER)
+                + "type = " + getType()
+                + ", sex = " + getSex()
+                + ", age = " + getAge()
+                + ", name = " + getName()
+                + ", health state = " + getHealthState().getOriginalState()
+                + ", size = " + getSize()
+                + ", ownerName = " + getOwnerName()
+                + ", registrationDate = " + getRegistrationDate().format(FORMATTER)
                 + "}";
     }
 
@@ -70,6 +68,18 @@ public class Dog extends Pet {
 
         Size(int value) {
             this.value = value;
+        }
+
+        public static Size fromString(String value) {
+            for (Size size : values()) {
+                if (size.toString().equalsIgnoreCase(value)) {
+                    return size;
+                }
+            }
+            System.out.println("Unable to parse value '" + value
+                    + "'. Using default value: " + UNKNOWN);
+
+            return UNKNOWN;
         }
 
         public int getValue() {
