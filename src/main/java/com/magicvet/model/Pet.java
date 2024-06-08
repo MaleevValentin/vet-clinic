@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public abstract class Pet {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     private String type;
     private String sex;
-    private String age;
+    private int age;
     private String name;
     private String ownerName;
     private HealthState healthState;
@@ -23,7 +23,7 @@ public abstract class Pet {
         this.healthState = healthState;
     }
 
-    public Pet(String type, String sex, String age, String name, HealthState healthState) {
+    public Pet(String type, String sex, int age, String name, HealthState healthState) {
         this.type = type;
         this.sex = sex;
         this.age = age;
@@ -78,11 +78,11 @@ public abstract class Pet {
         this.sex = sex;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -121,7 +121,8 @@ public abstract class Pet {
         EXCITED("EXCITED","Збуджений", 3),
         FEAR("FEAR","Страх", 4),
         NORMAL("NORMAL","Нормальний", 5),
-        LIVELY("LIVELY","Жвавий", 6);
+        LIVELY("LIVELY","Жвавий", 6),
+        UNKNOWN("UNKNOWN","Невизначений", 7);
 
         private final String originalState;
         private final String ukrTranslation;
@@ -131,6 +132,18 @@ public abstract class Pet {
             this.originalState = originalState;
             this.ukrTranslation = ukrTranslation;
             this.value = value;
+        }
+
+        public static HealthState fromString(String value) {
+            for (HealthState healthState : values()) {
+                if (healthState.toString().equalsIgnoreCase(value)) {
+                    return healthState;
+                }
+            }
+            System.out.println("Unable to parse value '" + value
+                    + "'. Using default value: " + UNKNOWN);
+
+            return UNKNOWN;
         }
 
         public String getOriginalState() {

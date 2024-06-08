@@ -35,14 +35,14 @@ public class Sandbox {
         }
 
         Pet[] pets = {
-                new Cat("cat", "female", "13", "Buffy", Pet.HealthState.NORMAL),
-                new Dog("dog", "male", "3", "Bob", Pet.HealthState.PAIN),
-                new Cat("cat", "female", "11", "Ann", Pet.HealthState.LETHARGIC),
-                new Dog("dog", "male", "1", "John", Pet.HealthState.EXCITED),
-                new Cat("cat", "male", "2", "Rich", Pet.HealthState.LIVELY),
-                new Dog("dog", "female", "6", "Leslie", Pet.HealthState.AGGRESSIVE),
-                new Cat("cat", "male", "8", "Den", Pet.HealthState.FEAR),
-                new Dog("dog", "male", "5", "Tor", Pet.HealthState.PAIN),
+                new Cat("cat", "female", 13, "Buffy", Pet.HealthState.NORMAL),
+                new Dog("dog", "male", 3, "Bob", Pet.HealthState.PAIN),
+                new Cat("cat", "female", 11, "Ann", Pet.HealthState.LETHARGIC),
+                new Dog("dog", "male", 1, "John", Pet.HealthState.EXCITED),
+                new Cat("cat", "male", 2, "Rich", Pet.HealthState.LIVELY),
+                new Dog("dog", "female", 6, "Leslie", Pet.HealthState.AGGRESSIVE),
+                new Cat("cat", "male", 8, "Den", Pet.HealthState.FEAR),
+                new Dog("dog", "male", 5, "Tor", Pet.HealthState.PAIN),
         };
 
         System.out.println("\nSort by pet age:");

@@ -25,8 +25,8 @@ public class Client {
                     + "\n\tfirstName = " + firstName
                     + ", lastName = " + lastName
                     + ", email = " + email
-                    + ", registrationDate = " + registrationDate.format(FORMATTER)
                     + ", location = " + location
+                    + ", registrationDate = " + registrationDate.format(FORMATTER)
                     + ",\n\tpets = " + pets
                     + "\n}";
         } else {
@@ -34,8 +34,8 @@ public class Client {
                     + "\n\tfirstName = " + firstName
                     + ", lastName = " + lastName
                     + ", email = " + email
-                    + ", registrationDate = " + registrationDate.format(FORMATTER)
                     + ", location = " + location
+                    + ", registrationDate = " + registrationDate.format(FORMATTER)
                     + ",\n\tpet = not registered"
                     + "\n}";
         }
@@ -107,6 +107,6 @@ public class Client {
     }
 
     public enum Location {
-        KYIV, KHARKIV, ODESA, LVIV
+        KYIV, KHARKIV, ODESA, LVIV, UNKNOWN
     }
 }
