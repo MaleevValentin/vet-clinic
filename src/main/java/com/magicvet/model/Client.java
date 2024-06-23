@@ -1,11 +1,62 @@
 package main.java.com.magicvet.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Client {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
 
     private String firstName;
     private String lastName;
     private String email;
-    private Pet pet;
+    private List<Pet> pets = new ArrayList<>();
+    private final LocalDateTime registrationDate = LocalDateTime.now();
+    private Location location;
+
+    @Override
+    public String toString() {
+        String message;
+        if (!this.pets.isEmpty()) {
+            message = "Client {"
+                    + "\n\tfirstName = " + firstName
+                    + ", lastName = " + lastName
+                    + ", email = " + email
+                    + ", location = " + location
+                    + ", registrationDate = " + registrationDate.format(FORMATTER)
+                    + ",\n\tpets = " + pets
+                    + "\n}";
+        } else {
+            message = "Client {"
+                    + "\n\tfirstName = " + firstName
+                    + ", lastName = " + lastName
+                    + ", email = " + email
+                    + ", location = " + location
+                    + ", registrationDate = " + registrationDate.format(FORMATTER)
+                    + ",\n\tpet = not registered"
+                    + "\n}";
+        }
+        return message;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Client client = (Client) object;
+        return Objects.equals(firstName, client.firstName)
+                && Objects.equals(lastName, client.lastName)
+                && Objects.equals(email, client.email)
+                && Objects.equals(pets, client.pets);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email, pets);
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -31,11 +82,31 @@ public class Client {
         return email;
     }
 
-    public Pet getPet() {
-        return pet;
+    public List<Pet> getPets() {
+        return pets;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void addPet(Pet pet) {
+        pets.add(pet);
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public enum Location {
+        KYIV, KHARKIV, ODESA, LVIV, UNKNOWN
     }
 }
